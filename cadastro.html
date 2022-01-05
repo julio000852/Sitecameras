@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Cadastro</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
+    <script src='js/main.js'></script>
+    <!--Externo-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+    
+</head>
+<body>
+    <div class="main">
+        <div class="img_direita" id="img_direita"></div>
+        <div class="direita" id="direita">
+            <div class="tela_cadastro">
+                <div class="cadastro">
+                    <h1>Cadastrar-se</h1>
+                    <div class="linha linha_cad"></div>
+
+                    <form class="campos_cadastro" action="cadastro.php" method="post" name="form1">
+                      
+                        <input class="nome" placeholder="Nome" type="text" name="nome" required>
+                                             
+                        <input class="snome" placeholder="Sobrenome" type="text" name="sobrenome" required>
+                        
+                        <input class="user" placeholder="Usuario" type="text" name="login" required>
+                        
+                        <input class="senha" placeholder="Senha" type="text" name="senha" required>
+                    
+                        <input class="telefone" placeholder="E-mail" type="email" name="email" required>
+                        
+                        <input type="submit" name="Submit" value="Cadastrar-se">
+                        
+                    </form>
+
+                </div>
+            </div>
+        </div>
+        <div class="img_esquerda" id="img_esquerda"></div>
+    </div>
+</body>
+</html>

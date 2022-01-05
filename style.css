@@ -1,0 +1,297 @@
+* {
+  margin: 0;
+  padding: 0;
+
+}
+header{
+  background-color: #23232e;
+}
+a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+a:hover {
+  opacity: 0.7;
+}
+
+
+div.nav {
+  text-decoration-color: #fff;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  background: #007fff;
+  height: 8vh;
+}
+div.text{
+  color: #fff;
+}
+
+a.logo {
+  letter-spacing: 3px;
+  display: flex;
+}
+
+div.cadastro{
+  display: flex;
+  letter-spacing: 3px;
+}
+div.login{
+  color: #fff;
+}
+div.dataehora {
+  margin-top: 1%;
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  color: #fff;
+  justify-content: space-around;
+  display: flex;
+  margin-left: 10px;
+}
+
+div.data{
+  display: flex;
+}
+
+div.hora{
+  display: flex;
+}
+
+div.clima{
+  display: flex;
+}
+
+div.tudo{
+  display: flex;
+}
+div.camedesc{
+  left:17 ;
+  width: 66%;
+  position: relative;
+
+}
+div.poc{
+  width: 35%;
+  
+}
+div.camera{
+  left: 0%;
+  width: 100%;
+  background-color: #23232e;
+  margin: 0px 0px 0px 0px;
+  padding: 0px;
+  padding-bottom: 56.5%;
+  position: relative;
+}
+div.camera > iframe{
+  margin-left: 5%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  
+}
+div.descri-video{
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  margin-left: 6%;
+  list-style: none;
+   color: #fff;
+
+}
+/*div.propaganda{
+  position: relative;
+  background: url("bg.jpg");
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  height: 35%;
+  list-style: none;
+  align-items: center;
+  letter-spacing: 4px;
+  display: flex;
+  justify-content: space-around;
+  left: 12%;
+  width: 76%;
+}*/
+
+.bt{
+  background: #069cc2; 
+  margin-top: 3px;
+  border-radius: 6px; 
+  padding: 15px; 
+  cursor: pointer; 
+  color: #fff; 
+  border: none; 
+  font-size: 16px;
+  left: 12%;
+  width: 76%;
+  position: relative;
+}
+
+
+div.outras{
+  margin-top: 1vh;
+  display: flex;
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  justify-content: space-around;
+  list-style: none;
+  color: #fff;
+}
+
+div.card{
+  left: 12%;
+  width: 76%;
+  position: relative;
+  margin-bottom: 1px;
+}
+div.camera > figure{
+  margin-left: 1%;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 95%;
+  height: 95%;
+}
+.opc-cam{
+  margin-top: 2px;
+  background: #505050;
+  left: 12%;
+  width: 76%;
+  position: relative;
+  height: 288px;
+  overflow-y: scroll;
+  border-radius: 6px; 
+}
+div.thumb{
+  left: 12%;
+  width: 76%;
+  position: relative;
+  margin-bottom: 1px;
+
+}
+div.thumb > figure{
+  margin-left: 1%;
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  width: 95%;
+  height: 95%;
+}
+#longin-conteiner{
+  background-color: #fff;
+  width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px 30px;
+  margin-top: 150px;
+  border-radius: 10px;
+  text-align: center;
+}
+#thumb{
+  overflow: hidden;
+
+}
+#thumb figure img{
+  width: 100%;
+  
+}
+#slider {
+    overflow: hidden;
+}
+#slider2 {
+  overflow: hidden;
+}
+
+#slider figure {
+    background-color: black;
+    position: relative;
+    width: 500%;
+    margin: 0;
+    left: 0;
+    animation: 20s slider infinite;
+}
+#slider2 figure {
+  background-color: black;
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  animation: 50s slider infinite;
+}
+
+#slider figure img {
+    width: 20%;
+    float: left;
+}
+#slider2 figure img {
+  width: 20%;
+  float: left;
+}
+
+@keyframes slider {
+    0% {
+        left: 0;
+    }
+    20% {
+        left: 0;
+    }
+    25% {
+        left: -100%;
+    }
+    45% {
+        left: -100%
+    }
+    50% {
+        left: -200;
+    }
+    70% {
+        left: -200%;
+    }
+    75% {
+        left: -300%;
+    }
+    95% {
+        left: -300%;
+    }
+    100% {
+        left: -400%;
+    }
+}
+
+div.rdp{
+  background: #dcdcdc;
+  color: #353835;
+  margin-top: 2vh;
+  font-family: system-ui, -apple-system, Helvetica, Arial, sans-serif;
+  list-style: none;
+  text-align: center;
+}
+img.logo-rdp{
+  margin-top: 2%;
+}
+@media screen and (max-width: 800px){
+  div.tudo{
+    display: inherit;
+  }
+  div.camera > iframe{
+  margin-left: 0%;
+  }
+  div.descri-video{
+  margin-left: 2%;
+  }
+  div.camedesc{
+  left:0% ;
+  width: 100%;
+  position: relative;
+
+  }
+  div.poc{
+  width: 100%; 
+  }
+  div.propaganda{
+  left: 5%;
+  width: 90%;
+  height: 25vh;
+}
+
+}

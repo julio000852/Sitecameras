@@ -183,9 +183,14 @@ div.thumb > figure{
   margin-left: auto;
   margin-right: auto;
   padding: 20px 30px;
-  margin-top: 150px;
+  margin-top: 10vh;
   border-radius: 10px;
   text-align: center;
+}
+
+#subscriber {
+  margin-top: 10px;
+  display: block;
 }
 #thumb{
   overflow: hidden;

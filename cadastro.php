@@ -1,14 +1,11 @@
-<html>
-<head>
-	<title>Add cadastro</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
-</head>
-
-<body style="background-image: url(./img/cxma.jpeg); background-size: cover;">
 <?php
 
 include_once("banco.php");
+
+if (empty($_POST['nome']) || empty($_POST['sobrenome']) || empty($_POST['login']) || empty($_POST['senha']) || empty($_POST['email']) ) {
+	header('Location: cadastro.html');
+	exit();
+}
 
 if(isset($_POST['Submit'])) {	
 	$nome = mysqli_real_escape_string($mysqli, $_POST['nome']);
@@ -21,6 +18,16 @@ if(isset($_POST['Submit'])) {
 			
 }
 ?>
+
+<html>
+<head>
+	<title>Add cadastro</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel='stylesheet' type='text/css' media='screen' href='css/main.css'>
+</head>
+
+<body style="background-image: url(./img/cxma.jpeg); background-size: cover;">
+
 
 	<div id="longin-conteiner">
 		<h1 style="color: green;">Cadastro realizado com sucesso</h1>

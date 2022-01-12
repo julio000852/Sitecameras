@@ -32,7 +32,7 @@ if(isset($_POST['Submit'])) {
 	<div id="longin-conteiner">
 		<h1 style="color: green;">Cadastro realizado com sucesso</h1>
 		<img width="100" height="100" src="./img/Sucesso.jpg">
-		<a href="login.html">
+		<a href="loginconta.php">
 		<div style="margin-left: 100px; margin-top: 50px; background-color: #00ff6a;" class="bt_cadastrar" id="cad">
         	<h3 style="margin-top: 5px;">Voltar ao login</h3>
         </div>

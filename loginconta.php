@@ -23,6 +23,7 @@ session_start();
                     <h1>Login</h1>
                     <div class="linha"></div>                   
                     <div class="campos">
+                        
                         <?php
                         if (isset($_SESSION['nao_autenticado'])):
                         ?>
@@ -33,12 +34,20 @@ session_start();
                         endif;
                         unset($_SESSION['nao_autenticado']);
                         ?>
+
+                        <?php
+                        if (isset($_SESSION['cadastrado'])){
+                            echo $_SESSION['cadastrado'];
+                            unset($_SESSION['cadastrado']);
+                        }
+                        ?>
+
                         <input type="text" name="login" placeholder="Digite o Login" required>
                         <input type="password" name="senha" placeholder="Senha" required>
                     </div>
                     <input style="text-transform: uppercase;font-weight: bold;" type="submit" name="Submit" value="Login" class="bt_login bt1">
                     <div class="bt_login bt1" id="cad">
-                        <a style="text-decoration: none;" class="h3c" href="cadastro.html">
+                        <a style="text-decoration: none;" class="h3c" href="cadastro.php">
                         <h3>Cadastrar-se</h3>
                         </a>
                     </div>                   

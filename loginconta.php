@@ -1,5 +1,7 @@
 <?php
 session_start();
+ob_start();
+include("banco.php");
 ?>
 
 <!DOCTYPE html>
@@ -42,15 +44,24 @@ session_start();
                         }
                         ?>
 
+                        <?php
+                        if (isset($_SESSION['msg'])){
+                            echo $_SESSION['msg'];
+                            unset($_SESSION['msg']);
+                        }
+                        ?>
+
                         <input type="text" name="login" placeholder="Digite o Login" required>
                         <input type="password" name="senha" placeholder="Senha" required>
+                        <a style="margin-top: 8px;" href="reculpera_senha.php">Esqueceu a senha?</a> 
                     </div>
                     <input style="text-transform: uppercase;font-weight: bold;" type="submit" name="Submit" value="Login" class="bt_login bt1">
                     <div class="bt_login bt1" id="cad">
                         <a style="text-decoration: none;" class="h3c" href="cadastro.php">
                         <h3>Cadastrar-se</h3>
                         </a>
-                    </div>                   
+                    </div>
+
                 </form>
             </div>
         </div>

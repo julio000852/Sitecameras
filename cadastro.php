@@ -1,31 +1,41 @@
 <?php
 session_start();
 include_once("banco.php");
+include("base64.php");
 
 /*if (empty($_POST['nome']) || empty($_POST['sobrenome']) || empty($_POST['login']) || empty($_POST['senha']) || empty($_POST['email']) ) {
 	header('Location: cadastro.html');
 	exit();
 }*/
+if(isset($_POST['Submit'])) {
+    $login = mysqli_real_escape_string($mysqli, $_POST['login']);
+    $email = mysqli_real_escape_string($mysqli, $_POST['email']);
 
-if(isset($_POST['Submit'])) {	
-	$nome = mysqli_real_escape_string($mysqli, $_POST['nome']);
-	$sobrenome = mysqli_real_escape_string($mysqli, $_POST['sobrenome']);
-	$login = mysqli_real_escape_string($mysqli, $_POST['login']);
-	$senha = mysqli_real_escape_string($mysqli, $_POST['senha']);
-	$email = mysqli_real_escape_string($mysqli, $_POST['email']);
-		
-	$result = mysqli_query($mysqli, "INSERT INTO cliente(nome,sobrenome,login,senha,email) VALUES('$nome','$sobrenome','$login','$senha','$email')");
-	
-	header('Location: loginconta.php');
+    $query = "SELECT email, login FROM cliente WHERE email = '{$email}' OR login = '{$login}'";
 
-	$_SESSION['cadastrado'] = '<div style="background-color: green; height: 50px; width: 250px; text-align: center; 							   align-items: center; border-radius: 10px;">
-                       		   <h3 style="color: white; margin-top: 13px;">cadastrado com sucesso!</h3>
-                        	   </div>';
+    $resultlinha = mysqli_query($mysqli, $query);
+    $row = mysqli_num_rows($resultlinha);
+
+    if ($row == 1) {
+    $_SESSION['msgerroremail'] = '<div style="background-color: red; height: 70px; width: 250px; text-align: center; align-items: center; border-radius: 10px;">
+                                   <h3 style="color: white; margin-top: 13px; margin-left: 70px; font-size: 15px">E-mail ou login ja cadastrado!</h3>
+                                   </div>';
+    }else{   
+        $nome = mysqli_real_escape_string($mysqli, $_POST['nome']);
+        $sobrenome = mysqli_real_escape_string($mysqli, $_POST['sobrenome']);
+        $login = mysqli_real_escape_string($mysqli, $_POST['login']);
+        $senha = mysqli_real_escape_string($mysqli, $_POST['senha']);
+        $email = mysqli_real_escape_string($mysqli, $_POST['email']);
+            
+        $result = mysqli_query($mysqli, "INSERT INTO cliente(nome,sobrenome,login,senha,email, fotoPerfil) VALUES('$nome','$sobrenome','$login','$senha','$email', '$fotoPerfil')");
+        
+        header('Location: loginconta.php');
+
+        $_SESSION['cadastrado'] = '<div style="background-color: green; height: 50px; width: 250px; text-align: center;                                align-items: center; border-radius: 10px;">
+                                   <h3 style="color: white; margin-top: 13px;">cadastrado com sucesso!</h3>
+                                   </div>';
 }
-
-
-
-
+}
 ?>
 
 <!DOCTYPE html>
@@ -55,14 +65,11 @@ if(isset($_POST['Submit'])) {
 
                     <form class="campos_cadastro" action="cadastro.php" method="post" name="form1">
 
-                    	<?php
-                        if (isset($_SESSION['cadastrado'])):
-                        ?>
-                        <div style="background-color: green; height: 50px; width: 250px; text-align: center; align-items: center; border-radius: 10px;">
-                        <h3 style="color: white; margin-top: 13px;">cadastrado com sucesso!</h3>
-                        </div>
                         <?php
-                        endif;
+                        if (isset($_SESSION['msgerroremail'])){
+                            echo $_SESSION['msgerroremail'];
+                            unset($_SESSION['msgerroremail']);
+                        }
                         ?>
                       
                         <input class="nome" placeholder="Nome" type="text" name="nome" required>

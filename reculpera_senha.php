@@ -51,7 +51,7 @@ $mail = new PHPMailer(true);
                                 $result_up_usuario = $mysqli->prepare($query_up_usuario);
 
                                 if ($result_up_usuario->execute()) {
-                                    $link = "http://localhost/can/atualizar_senha.php?chave=$chaveRecSenha";
+                                    $link = "http://localhost/Sitecameras/atualizar_senha.php?chave=$chaveRecSenha";
                                     try {
                                         //Server settings
                                         /*$mail->SMTPDebug = SMTP::DEBUG_SERVER;*/
@@ -76,7 +76,7 @@ $mail = new PHPMailer(true);
 
                                         $mail->send();
 
-                                        $_SESSION['msg'] = '<div style="background-color: green; height: 70px; width: 250px; text-align: center; align-items: center; border-radius: 10px;">
+                                        $_SESSION['msg'] = '<div style="background-color: green; height: 85px; width: 250px; text-align: center; align-items: center; border-radius: 10px;">
                                             <h3 style="color: white; margin-top: 13px;">E-mail enviado com sucesso! acesse para atualizar sua senha!</h3>
                                             </div>';
                                             header("Location: loginconta.php");

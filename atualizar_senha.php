@@ -2,6 +2,8 @@
 session_start();
 ob_start();
 include("banco.php");
+
+
 ?>
 
 <!DOCTYPE html>

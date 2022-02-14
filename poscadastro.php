@@ -1,6 +1,13 @@
-<?php 
-include('verificarlogin.php');
+<?php
+ob_start();
+include ("banco.php");
+include ("verificarLogin.php");
+
+$result = mysqli_query($mysqli, "SELECT fotoPerfil FROM cliente WHERE login = '{$_SESSION['login']}' LIMIT 1");
+$res = mysqli_fetch_array($result);
+
 ?>
+
 
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -9,10 +16,13 @@ include('verificarlogin.php');
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Caxias - Ao Vivo</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="./bootstrap/bootstrap-5.1.3-dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+    <script src="./bootstrap/bootstrap-5.1.3-dist/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.2.js"></script>
+
     <script type="text/javascript">
       jQuery(window).load(function($){
         atualizaRelogio();
@@ -21,29 +31,35 @@ include('verificarlogin.php');
 
   </head>
 
-  <body >
+  <body onload="searchResults()">
     <header>
       <div class="nav">
-        
-        
         <a class="logo"href="#">
-
         <div>
         <img class="pv" src="img/cav.jpg" alt="" height="35">
         </div>
         </a>
-        
 
-        <div class="cadastro">
-        <a href="logout.php">
-        <div class="login">Sair</div>
-        </a>
-        </div>
-
-        </div>
-      
-
-
+        <div class="perfil">
+            
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class = "image-circu ">
+                <img  id="imgPerfil" src = "<?php echo $res['fotoPerfil']?>" width="40" height="40" />  
+              </div>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <button style="border: none; background: white;" id="btnPerfil">
+              <li class="dropdown-item">
+              <input id="filePerfil" type="file" name="foto" accept="image/*"  style="display: none;">
+                Alterar foto de perfil
+              </li></button>
+              <li><a class="dropdown-item" href="alterarSenha.php">Alterar senha</a></li>
+              <li><a class="dropdown-item" href="logout.php">Sair</a></li>
+            </ul>
+          </div>    
+      </div>
+</div>
       <div class="dataehora">
 
       <div class="data">
@@ -58,7 +74,13 @@ include('verificarlogin.php');
 
       <div class="clima">
       <div> Clima:</div>
-      <div  id="hora">33º</div>
+      <div class="container-temp ">
+        <div></div>
+        </div></div>
+  
+
+  
+        </div>
       </div>
 
       </div>
@@ -148,6 +170,40 @@ include('verificarlogin.php');
     <script src="caovivo.js"></script>
   </body>
     <script>
+
+ //IMAGE-Perfil// 
+var btnPerfil = document.getElementById("btnPerfil");
+var filePerfil = document.getElementById("filePerfil");
+var fotoPerfil = document.getElementById("imgPerfil");
+
+btnPerfil.addEventListener('click', () => {
+  filePerfil.click();
+});
+filePerfil.addEventListener('change',() => {
+  let reader = new FileReader();
+  reader.onload = () =>{
+    fotoPerfil.src = reader.result;
+    var fotoUsuario = reader.result;
+    <?php
+      $fotoUsuariophp = "var fotoUsuario";
+
+      $query_up_usuario = "UPDATE cliente
+                           SET fotoPerfil = '{$fotoUsuariophp}'
+                           WHERE login = '{$_SESSION['login']}'
+                           LIMIT 1";
+      $result_up_usuario = $mysqli->prepare($query_up_usuario);
+      if ($result_up_usuario->execute()) {
+                
+            }else{
+              
+              }
+    ?>
+  }
+  reader.readAsDataURL(filePerfil.files[0]);
+
+});
+     
+
     function atualizaRelogio(){ 
       var momentoAtual = new Date();
       

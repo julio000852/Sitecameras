@@ -1,6 +1,6 @@
 <?php 
 include("banco.php");
-$result = mysqli_query($mysqli, "SELECT imgPerfil FROM cliente WHERE idCliente = 1");
+$result = mysqli_query($mysqli, "SELECT fotoPerfil FROM cliente WHERE idCliente = 1");
 $res = mysqli_fetch_array($result);
 ?>
 
@@ -12,6 +12,6 @@ $res = mysqli_fetch_array($result);
 	<title>sdfsdf</title>
 </head>
 <body>
-<img src="data:image/png;base64, <?php echo $res['imgPerfil']?>">
+<img src="<?php echo $res['fotoPerfil']?>">
 </body>
 </html>

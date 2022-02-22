@@ -3,7 +3,14 @@ ob_start();
 include ("banco.php");
 include ("verificarLogin.php");
 
-$result = mysqli_query($mysqli, "SELECT fotoPerfil FROM cliente WHERE login = '{$_SESSION['login']}' LIMIT 1");
+if(isset($_POST['imgPerfil']) && isset($_POST['userId']))  {
+  $img = $_POST['imgPerfil'];
+  $id  = $_POST['userId'];
+  mysqli_query($mysqli, "UPDATE cliente SET fotoPerfil = '$img' WHERE idCliente = $id ");
+  echo 'Sucesso!';
+}else{
+
+$result = mysqli_query($mysqli, "SELECT fotoPerfil, idCliente FROM cliente WHERE login = '{$_SESSION['login']}' LIMIT 1");
 $res = mysqli_fetch_array($result);
 
 ?>
@@ -175,32 +182,27 @@ $res = mysqli_fetch_array($result);
 var btnPerfil = document.getElementById("btnPerfil");
 var filePerfil = document.getElementById("filePerfil");
 var fotoPerfil = document.getElementById("imgPerfil");
+var meuUsuario = <?php echo $res['idCliente']; ?>
 
 btnPerfil.addEventListener('click', () => {
   filePerfil.click();
 });
+
 filePerfil.addEventListener('change',() => {
   let reader = new FileReader();
-  reader.onload = () =>{
+    reader.onload = () =>{
     fotoPerfil.src = reader.result;
-    var fotoUsuario = reader.result;
-    <?php
-      $fotoUsuariophp = "var fotoUsuario";
-
-      $query_up_usuario = "UPDATE cliente
-                           SET fotoPerfil = '{$fotoUsuariophp}'
-                           WHERE login = '{$_SESSION['login']}'
-                           LIMIT 1";
-      $result_up_usuario = $mysqli->prepare($query_up_usuario);
-      if ($result_up_usuario->execute()) {
-                
-            }else{
-              
-              }
-    ?>
+    $.post("poscadastro.php",{imgPerfil: reader.result,userId:meuUsuario},function(data, status){
+      if(status != 'success'){
+        console.log("Data: " + data + "\nStatus: " + status);
+        alert("Ocorreu algo inesperado, por favor tente novamente, e caso percista, entre em contado com o administrador.");
+      }else{
+        alert("Sucesso ao alterar foto de perfil!");
+      }
+      
+    });
   }
   reader.readAsDataURL(filePerfil.files[0]);
-
 });
      
 
@@ -231,3 +233,7 @@ filePerfil.addEventListener('change',() => {
     }
   </script>
 </html>
+
+<?php 
+}
+?>
